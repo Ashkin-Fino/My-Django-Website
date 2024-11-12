@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+	   /* Styling the button */
+        button {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 10px 20px;
+            border: 3px solid #4CAF50; /* Thick border */
+            border-radius: 15px; /* Rounded edges */
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        /* Styling the button on hover */
+        button:hover {
+            background-color: white;
+            color: black;
+            border: 3px solid #4CAF50;
+        }
+
+        /* Styling the input box */
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            outline: none;
+            margin-top: 15px;
+        }
+
+        /* Change border color on focus */
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+        }
+    </style>
+</head> 
+<body>
+
+<header>
+    {% block content1%}    
+    {% endblock %}
+</header>
+
+<section>
+    {% block content2%}    
+    {% endblock %}
+</section>
+
+<footer>
+    <p>&copy; 2024 My Simple Webpage</p>
+</footer>
+
+</body>
+</html>
