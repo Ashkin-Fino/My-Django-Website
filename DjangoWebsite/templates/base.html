@@ -12,77 +12,91 @@
             margin: 0;
             padding: 0;
         }
+
         header {
-            background-color: #4CAF50;
+            background-color: #00bcd4;
             color: white;
-            padding: 10px 0;
+            padding: 2px 0;
+            position: relative;
         }
+
+        /* Round button in the top-right corner */
+        .round-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #00bcd4;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .round-button:hover {
+            background-color: #008ba3; /* Darker cyan */
+            color: white;
+            border-color: #005f73; /* Even darker cyan border on hover */
+        }
+
         section {
             padding: 20px;
         }
+
         footer {
             background-color: #333;
             color: white;
-            padding: 10px 0;
+            padding: 2px 0;
             position: fixed;
             width: 100%;
             bottom: 0;
         }
-        a {
-            color: #4CAF50;
+
+        footer a {
+            color: #00bcd4;
             text-decoration: none;
-        }
-	   /* Styling the button */
-        button {
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            padding: 10px 20px;
-            border: 3px solid #4CAF50; /* Thick border */
-            border-radius: 15px; /* Rounded edges */
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-        
-        /* Styling the button on hover */
-        button:hover {
-            background-color: white;
-            color: black;
-            border: 3px solid #4CAF50;
+            font-size: 18px;
         }
 
-        /* Styling the input box */
-        input[type="text"] {
-            padding: 10px;
-            width: 50%;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-sizing: border-box;
-            outline: none;
-            margin-top: 15px;
-        }
-
-        /* Change border color on focus */
-        input[type="text"]:focus {
-            border-color: #4CAF50;
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
-</head> 
+    <script>
+        // Function to navigate to profile page
+        function navigateToProfile() {
+            window.location.href = '/profile';
+        }
+
+        // Function to navigate to contact page
+        function navigateToContact() {
+            window.location.href = '/contact';
+        }
+    </script>
+</head>
 <body>
 
 <header>
-    {% block content1%}    
+    {% block content1 %}
     {% endblock %}
+    <!-- Round button with profile emoji -->
+    <button class="round-button" onclick="navigateToProfile()">&#x1F464;</button>
 </header>
 
 <section>
-    {% block content2%}    
+    {% block content2 %}
     {% endblock %}
 </section>
 
 <footer>
     <p>&copy; 2024 My Simple Webpage</p>
+    <p><a href="#" onclick="navigateToContact()">Contact Us</a></p>
 </footer>
 
 </body>
