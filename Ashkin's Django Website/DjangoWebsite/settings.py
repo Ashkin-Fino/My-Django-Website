@@ -1,14 +1,19 @@
+import os
+import json
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load secrets from a JSON file
+with open(os.path.join(BASE_DIR, 'secrets.json')) as f:
+    secrets = json.load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u(=az$0wh5o%73#+^_-5z1nr2j=cvvtumiz&i8ar2g_nylfy%8'
+SECRET_KEY = secrets['django_webapp']['secret_key']['value']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,8 +30,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mozilla_django_oidc',  # OIDC authentication app
     'WelcomeApp.apps.WelcomeappConfig',
-    'UserProfileApp.apps.UserprofileappConfig'
+    'UserProfileApp.apps.UserprofileappConfig'  
 ]
 
 MIDDLEWARE = [
@@ -38,6 +44,23 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Enables Django's session-based login
+    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',  # Enables OIDC login
+]
+
+# OIDC Configuration
+OIDC_RP_CLIENT_ID = secrets['OIDC_configuration']['web']['client_id']
+OIDC_RP_CLIENT_SECRET = secrets['OIDC_configuration']['web']['client_secret']
+OIDC_OP_AUTHORIZATION_ENDPOINT = secrets['OIDC_configuration']['web']['auth_uri']
+OIDC_OP_TOKEN_ENDPOINT = secrets['OIDC_configuration']['web']['token_uri']
+OIDC_OP_USER_ENDPOINT = secrets['OIDC_configuration']['web']['userinfo_uri']
+OIDC_OP_JWKS_ENDPOINT = secrets['OIDC_configuration']['web']['jwks_uri']
+OIDC_RP_SIGN_ALGO = secrets['OIDC_configuration']['web']['oidc_rp_sign_algo']
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'DjangoWebsite.urls'
 

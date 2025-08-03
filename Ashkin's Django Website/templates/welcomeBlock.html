@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content1 %}
-<h1>Hello {{name}}!! Welcome to My Webpage</h1>
+{% if name == "Yesodhaa" %}
+    <h1>Epdithano {{name}}!! Welcome to My Webpage</h1>
+{% else %}
+    <h1>Hello {{name}}!! Welcome to My Webpage</h1>
+{% endif %}
 {% endblock %}
 
 {% block content2 %}

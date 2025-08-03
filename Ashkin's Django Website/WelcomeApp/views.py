@@ -10,4 +10,3 @@ def welcomePage(request):
     elif request.method == 'GET':
         return render(request, "namegetter.html")
 
-
